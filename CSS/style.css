@@ -1,0 +1,64 @@
+h1{
+    color: gold;
+    }
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+        background: url(pics/background.jpg);
+    }
+    #link{
+    width: 100%;
+    margin-top: 250px;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+    background: gold;
+    color: black;
+    }
+    #link a{
+        text-decoration: none;
+    }
+    #link a:hover{
+    text-decoration: underline;
+    }
+    form{
+        margin-top: 150px;
+        background-color: gold;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 150px;
+        font-size: 20px;
+    }
+    #submit_button{
+        width: 250px;
+    }
+    #submit_button:hover{
+        cursor: pointer;
+        background-color: gray;
+    }
+
+
+    .php_part{
+        margin-top: 150px;
+        background-color: gold;
+        width: 100%;
+        height: 150px;
+        font-size: 20px;
+        text-align: center;
+        
+    }
+    .php_part a{
+        text-decoration: none;
+    }
+    .php_part :hover{
+        text-decoration: underline;
+    }
+
+    #php_handleform{
+        height: auto;
+    }

@@ -12,6 +12,7 @@
 </body>
 </html>
 
+
 <div class="php_part">
 <?php
 
@@ -21,13 +22,17 @@ if (isset($_POST["username"])){
     header('Location: index.php');
 }
 
+
+
 class Database{
     public $servername;
     public $dbuser;
     public $dbpassword;
     public $dbname;
     public $conn;
-
+    function __construct($serverName){ 
+        echo "Welcome to our site<br>";
+    }
 
     function conn(){
         $this->servername = "localhost";
@@ -57,12 +62,11 @@ class Database{
         $result=$this->conn->QUERY($this->query);
 
         echo "Registered.<br>Username: $this->username<br>Password: $this->password<br>";
+        echo "<a href='login.php'>Login</a>";
     }
     function checkUser(){
         $this->username = $_POST["username"];
-        $this->password = $_POST["password"];
-        
-        $this->query = "SELECT `username`, `password` 
+        $this->query = "SELECT * 
         FROM `users` 
         WHERE `username` = '$this->username'";
         
@@ -70,26 +74,10 @@ class Database{
 
         if ($result->num_rows > 0) { 
             while($row = $result->fetch_assoc()) { 
-                if ($this->password == $row["password"]){
-                    $username = $_POST["username"];
-                    $password = $_POST["password"];
-
-
-                    session_start();
-
-                    $_SESSION["username"] = $username;
-                    $_SESSION["password"] = $password;
-
-                    echo "Welcome, go to <a href='index.php'>Home</a>";
-                } else{
-                    echo "Wrong password<br>";
-                    echo "<a href='login.php'>Try again</a> or <a href='register.php'>Register</a></br>";
-                }
-
+                echo "This username already exists. If this is you, please <a href='login.php'>Login</a><br>";
             }
         } else {
-            echo "User name doesn't exist<br>";
-            echo "<a href='login.php'>Login</a> or <a href='register.php'>Register</a></br>";
+            $this->registerUser();
         }
     }
 }
@@ -99,7 +87,6 @@ $newDB = new Database("localhost");
 $newDB->conn();
 $newDB->checkUser();
 
-
-
 ?>
 </div>
+

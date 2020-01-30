@@ -1,4 +1,6 @@
 <?php
+
+
 if (isset($_SESSION["username"])){
     
 } else{
@@ -34,6 +36,7 @@ class Database{
     //======================================QUERY======================================
 
     public $query;   
+    public $userN;
     
     function insertIntoQuery($url, $short_url,$user){
         $this->query = "INSERT INTO `url`(`url`, `short_url`, `user`) 
@@ -44,24 +47,22 @@ class Database{
         echo "New URL: ".$short_url."<br>";
     }
     public function checkQuery($url, $short_url, $user){
-        
-        $this->query = "SELECT `id`, `url`, `short_url` 
+        $this->userN = $_SESSION["username"];
+        $this->query = "SELECT `id`, `url`, `short_url`, `user` 
         FROM `url` 
-        WHERE `url` = '$url'";
+        WHERE `url` = '$url' AND `user` = '$this->userN'";
         
         $result=$this->conn->QUERY($this->query);
 
         if ($result->num_rows > 0) { 
             while($row = $result->fetch_assoc()) { 
                 echo "This already exists<br>";
-                echo " Your Link: ".$row["url"]."<br>"."<hr>"."Short Link : ".$row["short_url"]."<br>";
+                echo "Your Link: ".$row["url"]."<br>"."<hr>"."Short Link : ".$row["short_url"]."<br>";
             }
         } else {
             $this->insertIntoQuery($url, $short_url, $user);
         }
-        
         $this->getUserData($user);
-        
     }
     function getUserData($user){
         $this->query = "SELECT `id`, `url`, `short_url` 
@@ -95,10 +96,4 @@ class Database{
 }
 
 
-// $newDb = new Database("localhost");
-// $newDb->conn();
-// $newDb->getData();
-// $newDb->myData();
-// $newDb->checkQuery('x','z');
 
-// echo '<hr>';

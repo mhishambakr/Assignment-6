@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+    <h1>Welcome to our website</h1>
+</body>
+</html>
+
+<div class="php_part" id="php_handleform">
+
 <?php
 session_start();
 if (isset($_SESSION["username"])){
@@ -34,38 +50,16 @@ class Link{
         $newDb2 = new Database("localhost");
         $newDb2->conn();
         $newDb2->checkQuery($this->url, $this->shortURL, $this->user);
-        // echo "Link: ".$this->url."<br>";
-        // echo "New URL: ".$this->shortURL."<br>";
     }
 }
 
 $newURL = new Link();
 $newURL->getData();
 
+
+echo '<hr>';
+
+echo '<a href="logout.php">Logout</a>';
 ?>
-<hr>
 
-<?php
-
-
-
-// class User{
-//     public $user;
-//     function getData(){
-//         $this->user = $_SESSION["username"];
-//         $newDb2 = new Database("localhost");
-//         $newDb2->conn();
-//         $newDb2->getUser($this->user);
-//     }
-// }
-
-// $newUser = new User();
-// $newUser->getData();
-// echo $newUser->user;
-
-// echo '<hr>';
-
-if (isset($_SESSION["username"])){
-    echo '<a href="logout.php">Logout</a>';
-}
-?>
+</div>
