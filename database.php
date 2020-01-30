@@ -1,9 +1,9 @@
 <?php
-// if (isset($_SESSION["username"])){
+if (isset($_SESSION["username"])){
     
-// } else{
-//     header('Location: index.php');
-// }
+} else{
+    header('Location: index.php');
+}
 
 class Database{
     public $servername;

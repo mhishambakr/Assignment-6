@@ -1,10 +1,10 @@
 <?php
 
-// if (isset($_SESSION["username"])){
+if (isset($_SESSION["username"])){
     
-// } else{
-//     header('Location: index.php');
-// }
+} else{
+    header('Location: index.php');
+}
 
 $username = $_POST["username"];
 $password = $_POST["password"];
